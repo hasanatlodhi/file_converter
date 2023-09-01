@@ -1,0 +1,11 @@
+openpyxl
+pdf2docx
+docx2pdf
+aspose-cells-python
+aspose-slides==23.8.0
+aspose-pdf==23.8.0
+fastapi
+PyPDF4
+uvicorn
+img2pdf
+python-multipart

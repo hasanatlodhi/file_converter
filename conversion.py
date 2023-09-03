@@ -1,5 +1,6 @@
 from pdf2docx import parse,Converter
-from docx2pdf import convert
+# from docx2pdf import convert
+import subprocess
 # from openpyxl import load_workbook
 # import pandas as pd
 # import img2pdf
@@ -15,7 +16,11 @@ def convert_pdf2docx(input_file: str, output_file: str):
 
 
 def convert_docx2pdf(input_word_path,output_pdf_path):
-    convert(input_word_path, output_pdf_path)
+    try:
+        subprocess.run(["libreoffice", "--headless", "--convert-to", "pdf", input_word_path])
+        print(f"Conversion successful: {input_word_path} -> {output_pdf_path}")
+    except Exception as e:
+        print(f"Conversion failed: {e}")
 
 
 # from reportlab.lib.pagesizes import letter

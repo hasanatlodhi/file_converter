@@ -17,7 +17,12 @@ def convert_pdf2docx(input_file: str, output_file: str):
 
 def convert_docx2pdf(input_word_path,output_pdf_path):
     try:
-        subprocess.run(["libreoffice", "--headless", "--convert-to", "pdf", input_word_path])
+        # Specify the output PDF file name using the --outdir and --convert-to options
+        subprocess.run(["libreoffice", "--headless", "--convert-to", "pdf", "--outdir", ".", input_word_path])
+        
+        # Rename the generated PDF file to the desired name
+        subprocess.run(["mv", f"{input_word_path}.pdf", output_pdf_path])
+        
         print(f"Conversion successful: {input_word_path} -> {output_pdf_path}")
     except Exception as e:
         print(f"Conversion failed: {e}")

@@ -34,8 +34,8 @@ async def upload_file(file: UploadFile = File(...)):
     if file.filename.endswith('.docx') or file.filename.endswith('.doc'):
        with open(file_path, "wb") as f:
             f.write(file.file.read())
-       convert_docx2pdf(f"user_files/{file.filename}",f"{random_name}.pdf")
-       return FileResponse(f"{random_name}.pdf", media_type="application/pdf")
+       convert_docx2pdf(f"user_files/{file.filename}",f"{os.path.splitext(file.filename)[0]}.pdf")
+       return FileResponse(f"{os.path.splitext(file.filename)[0]}.pdf", media_type="application/pdf")
     
     else:
         return {"error": "Unsupported file format"}

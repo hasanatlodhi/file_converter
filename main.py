@@ -77,7 +77,7 @@ async def upload_file(file: UploadFile = File(...)):
     random_number = random.randrange(100000, 1000000)
     random_name = str(random_number)
     file_path = os.path.join(upload_dir, file.filename)
-    if file.filename.endswith('.xlsx') or file.filename.endswith('.csv'):
+    if file.filename.endswith('.xlsx') or file.filename.endswith('.csv') or file.filename.endswith('.xls'):
         with open(file_path, "wb") as f:
             f.write(file.file.read())
         generate_pdf_from_excel(f"user_files/{file.filename}",f"{random_name}.pdf")

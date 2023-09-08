@@ -56,21 +56,24 @@ async def upload_file(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail=f"Unsupported file format")
 
 
-@app.post("/ppit_to_pdf/")
+ppt_to_pdf_semaphore = asyncio.Semaphore(1)
+@app.post("/ppt_to_pdf/")
 async def upload_file(file: UploadFile = File(...)):
-    random_number = random.randrange(100000, 1000000)
-    random_name = str(random_number)
-    upload_dir = "user_files"
-    file_path = os.path.join(upload_dir, file.filename)
-    print("wwowwww")
-    if file.filename.endswith('.ppt') or file.filename.endswith('.pptx'):
-       with open(file_path, "wb") as f:
-            f.write(file.file.read())
-            
-       generate_pdf(f"user_files/{file.filename}",f"{random_name}.pdf")
-       return FileResponse(f"{random_name}.pdf", media_type="application/pdf")
-    else:
-        raise HTTPException(status_code=400, detail=f"Unsupported file format")
+    async with ppt_to_pdf_semaphore:
+        random_number = random.randrange(100000, 1000000)
+        random_name = str(random_number)
+        upload_dir = "user_files"
+        file_path = os.path.join(upload_dir, file.filename)
+        print("wwowwww")
+        
+        if file.filename.endswith('.ppt') or file.filename.endswith('.pptx'):
+            with open(file_path, "wb") as f:
+                f.write(file.file.read())
+                
+            generate_pdf(f"user_files/{file.filename}", f"{random_name}.pdf")
+            return FileResponse(f"{random_name}.pdf", media_type="application/pdf")
+        else:
+            raise HTTPException(status_code=400, detail=f"Unsupported file format")
 
 @app.post("/excel_to_pdf/")
 async def upload_file(file: UploadFile = File(...)):

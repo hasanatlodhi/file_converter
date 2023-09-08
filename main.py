@@ -7,6 +7,7 @@ from typing import List
 from pdfconv import generate_excel_from_pdf
 import random
 import img2pdf
+import asyncio
 app = FastAPI()
 from conversion import *
 import os

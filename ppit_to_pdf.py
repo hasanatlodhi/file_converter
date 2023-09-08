@@ -47,6 +47,7 @@ def generate_pdf(input_file,output_path):
     wm_text = ['Evaluation only.','Created with Aspose.Slides for .NET Standard 2.0 23.8.','Copyright 2004-2023Aspose Pty Ltd.']
 
     inputFile = r'output.pdf'
+    print("HEre done")
     remove_watermark(wm_text, inputFile, output_path)
 
 # generate_pdf('output.pptx')

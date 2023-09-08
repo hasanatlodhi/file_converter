@@ -58,7 +58,7 @@ async def upload_file(file: UploadFile = File(...)):
 
 
 ppt_to_pdf_semaphore = asyncio.Semaphore(1)
-@app.post("/ppt_to_pdf/")
+@app.post("/ppit_to_pdf/")
 async def upload_file(file: UploadFile = File(...)):
     async with ppt_to_pdf_semaphore:
         random_number = random.randrange(100000, 1000000)

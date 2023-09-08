@@ -62,6 +62,7 @@ async def upload_file(file: UploadFile = File(...)):
     random_name = str(random_number)
     upload_dir = "user_files"
     file_path = os.path.join(upload_dir, file.filename)
+    print("wwowwww")
     if file.filename.endswith('.ppt') or file.filename.endswith('.pptx'):
        with open(file_path, "wb") as f:
             f.write(file.file.read())

@@ -45,7 +45,7 @@ def generate_pdf(input_file,output_path):
     pres.save("output.pdf", slides.export.SaveFormat.PDF, options)
 
     wm_text = ['Evaluation only.','Created with Aspose.Slides for .NET Standard 2.0 23.8.','Copyright 2004-2023Aspose Pty Ltd.']
-
+    print("Before done")
     inputFile = r'output.pdf'
     print("HEre done")
     remove_watermark(wm_text, inputFile, output_path)

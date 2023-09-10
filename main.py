@@ -100,8 +100,8 @@ async def upload_file(file: UploadFile = File(...)):
     if file.filename.endswith('.pdf'):
         with open(file_path, "wb") as f:
             f.write(file.file.read())
-        generate_excel_from_pdf(f"user_files/{file.filename}",f"{random_name}.csv")
-        return FileResponse(f"{random_name}.csv",media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", filename=f"{random_name}.csv")
+        generate_excel_from_pdf(f"user_files/{file.filename}",f"{random_name}.xlsx")
+        return FileResponse(f"{random_name}.xlsx",media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", filename=f"{random_name}.xlsx")
     else:
         raise HTTPException(status_code=400, detail=f"Unsupported file format")
 

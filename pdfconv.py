@@ -8,7 +8,7 @@ def generate_excel_from_pdf(input_pdf,output_excel):
     excelSaveOptions = pdf.ExcelSaveOptions()
     
     # Convert the PDF to Excel workbook
-    document.save("scccs.xlsx", excelSaveOptions)
+    document.save(output_excel, excelSaveOptions)
     
     print("Conversion process completed")
     

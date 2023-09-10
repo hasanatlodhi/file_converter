@@ -1,6 +1,7 @@
 import tabula
 import aspose.pdf as pdf
 import time
+import openpyxl
 def generate_excel_from_pdf(input_pdf,output_excel):
     # Load input PDF document
     document = pdf.Document(input_pdf)
